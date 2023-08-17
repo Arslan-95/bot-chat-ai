@@ -10,7 +10,9 @@ type MessageProps = {
 
 const Message = ({ avatar, message, isSended }: MessageProps) => {
   return (
-    <div className={classNames(styles.message, { isSended })}>
+    <div
+      className={classNames(styles.message, { [styles.isSended]: isSended })}
+    >
       <Avatar src={avatar} />
       <div className={styles.message__container}>
         <p>{message}</p>

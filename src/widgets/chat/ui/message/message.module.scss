@@ -15,15 +15,15 @@
     }
   }
 
-  &:not(:global(.isSended)) {
+  &:not(.isSended) {
     animation: messageAppearance 0.5s;
   }
 
-  &:global(.isSended) {
+  &.isSended {
     flex-direction: row-reverse;
   }
 
-  &:global(.isSended) &__container {
+  &.isSended &__container {
     background: var(--color-primary);
     color: #fff;
     animation: sendedMessageAppearance 0.4s;
