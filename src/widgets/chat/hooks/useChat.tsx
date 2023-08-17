@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { postMessage } from '../api';
 import { ChunkParser, Iterator, TextParser } from '../lib';
 import { Message } from '../model';
@@ -7,9 +7,41 @@ export const useChat = () => {
   const [messageText, setMessageText] = useState('');
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
+  const sendMessageFormRef = useRef<HTMLDivElement>(null);
 
   const handleMessageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setMessageText(e.target.value);
+  };
+
+  const scrollToLastMessage = () => {
+    const messagesContainer = messagesContainerRef.current;
+
+    if (!messagesContainer) return;
+
+    setTimeout(() => {
+      messagesContainer.scrollTo({
+        top: messagesContainer.scrollHeight,
+        behavior: 'smooth',
+      });
+    });
+  };
+
+  const scrollWindowToForm = () => {
+    const sendMessageForm = sendMessageFormRef.current;
+
+    if (!sendMessageForm) return;
+
+    setTimeout(() => {
+      sendMessageForm.scrollIntoView({
+        behavior: 'smooth',
+      });
+    });
+  };
+
+  const updateMessages = (cb: (prev: Message[]) => Message[]) => {
+    setMessages((prev) => cb(prev));
+    scrollToLastMessage();
   };
 
   const submit = async () => {
@@ -20,7 +52,7 @@ export const useChat = () => {
       const messageId = messages[messages.length - 1]
         ? messages[messages.length - 1].id + 1
         : 0;
-      setMessages((prev) => [
+      updateMessages((prev) => [
         ...prev,
         { id: messageId, text: messageText, isSended: true },
       ]);
@@ -57,7 +89,7 @@ export const useChat = () => {
           }
         }
 
-        setMessages((prev) => {
+        updateMessages((prev) => {
           const newArr = [...prev];
           const responseMessageIndex = prev.findIndex(
             ({ id }) => id === responseMessageId
@@ -82,8 +114,17 @@ export const useChat = () => {
       console.log('[submit]', error);
     }
 
+    scrollWindowToForm();
     setIsLoading(false);
   };
 
-  return { messageText, handleMessageChange, messages, submit, isLoading };
+  return {
+    messageText,
+    handleMessageChange,
+    messages,
+    submit,
+    isLoading,
+    messagesContainerRef,
+    sendMessageFormRef,
+  };
 };
