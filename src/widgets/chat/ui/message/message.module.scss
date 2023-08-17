@@ -1,0 +1,51 @@
+.message {
+  display: flex;
+  gap: 13px;
+  width: 100%;
+
+  &__container {
+    max-width: 400px;
+    padding: 12px 20px;
+    border-radius: 28px;
+    background: var(--color-primary-light);
+
+    p {
+      margin: 0;
+      word-break: break-word;
+    }
+  }
+
+  &:not(:global(.isSended)) {
+    animation: messageAppearance 0.5s;
+  }
+
+  &:global(.isSended) {
+    flex-direction: row-reverse;
+  }
+
+  &:global(.isSended) &__container {
+    background: var(--color-primary);
+    color: #fff;
+    animation: sendedMessageAppearance 0.4s;
+  }
+}
+
+@keyframes sendedMessageAppearance {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes messageAppearance {
+  from {
+    opacity: 0.5;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

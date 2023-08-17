@@ -1,0 +1,25 @@
+.sendIconButton {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background: var(--color-primary);
+  border-radius: 24px;
+  border: none;
+  transition: transform 0.1s;
+  cursor: pointer;
+
+  &:not(:active):hover {
+    transform: scale(1.05);
+  }
+
+  img {
+    position: absolute;
+    top: 50%;
+    left: 57%;
+    transform: translate(-50%, -50%);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+  }
+}

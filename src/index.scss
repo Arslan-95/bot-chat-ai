@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+  font-family: 'Open Sans';
+}
+
+body {
+  --color-primary: #007afe;
+  --color-primary-light: rgba(34, 118, 245, 0.2);
+}
+
+.message {
+  border: 1px solid #000;
+  margin-bottom: 15px;
+}
+
+* {
+  box-sizing: border-box;
+}

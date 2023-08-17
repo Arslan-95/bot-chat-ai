@@ -1,0 +1,74 @@
+.chatPage {
+  padding: 34px 76px;
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #228be6 0%, #0a3f8e 100%);
+  // background-image: url('./ui/assets/background-circles.png');
+  // background-repeat: no-repeat;
+  // background-size: cover;
+  backdrop-filter: blur(307.5px);
+  overflow: hidden;
+  position: relative;
+
+  &__container {
+    max-width: 800px;
+    padding: 0 10px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  &__title,
+  &__subtitle {
+    line-height: 155%; /* 89.427px */
+    color: #fff;
+  }
+
+  &__title {
+    margin: 0;
+
+    font-size: 57.695px;
+    font-weight: 700;
+    text-transform: capitalize;
+  }
+
+  &__subtitle {
+    margin: -4px 0 26px;
+    padding-left: 3px;
+
+    font-size: 18.211px;
+    font-style: normal;
+    font-weight: 400;
+  }
+}
+
+.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-height: 100%;
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+
+  &__img {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    object-fit: contain;
+  }
+
+  &__overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(34, 139, 230, 0.01) 0%,
+      rgba(10, 63, 142, 0.01) 100%
+    );
+    backdrop-filter: blur(307.5px);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .chatPage {
+    padding: 10px 0 20px;
+  }  
+}

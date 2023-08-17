@@ -1,0 +1,18 @@
+.chat {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  width: 100%;
+
+  &__messagesContainer {
+    margin-bottom: 38px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+
+    padding: 36px 15px 56px;
+    border-radius: 16px;
+    border: 1px solid #fff;
+    background: #fff;
+    box-shadow: 0px 2px 31px 13px rgba(10, 63, 142, 0.08);
+  }
+}
