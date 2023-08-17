@@ -27,6 +27,7 @@ const SendForm = ({
         placeholder="Start typing here..."
         value={messageText}
         onChange={onMessageChange}
+        required
       />
       <div className={styles.sendForm__button}>
         <SendIconButton disabled={disabled} />
